@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db503a6b91cab384f83ae4b7f7a5f2a1, type: 3}
+  m_Name: GhastLee
+  m_EditorClassIdentifier: Assembly-CSharp::MeatMeProfileData
+  username: GhastLee
+  photo: {fileID: -8438351738156032215, guid: 150cbfe38d89a364580cd9db807d47f2, type: 3}
+  description: BOOoooOOOooo
+  greetings:
+  - ... hi
+  positive:
+  - that's... not that bad, actually
+  - hey, i think i kinda like that
+  negative:
+  - damn, give me some space
+  - (silently stares)
+  death:
+  - Silly you. I'm already a ghost. (vanishes)
+  conversationSuccess:
+  - you're... kinda alright
+  conversationFail:
+  - ew, why are you so clingy?
+  apartmentDialogues:
+  - So... this is your place? ... (silence)
+  - ... (looks around)
+  - ... (looks into the air)
+  - ... (sits down, falls through chair)
+  - You're breathing quite loudly.
+  conversationRules:
+  - {fileID: 11400000, guid: 7f5c8b9f77d6d1343946eb2e26c05fe9, type: 2}
+  - {fileID: 11400000, guid: a7fdc6ffdf92d444dad6e2a53eaa5fe8, type: 2}
+  - {fileID: 11400000, guid: e04d19f1afbc7d0438e9136f4802dc5f, type: 2}

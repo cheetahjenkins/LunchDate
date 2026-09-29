@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db503a6b91cab384f83ae4b7f7a5f2a1, type: 3}
+  m_Name: GrimLynn
+  m_EditorClassIdentifier: Assembly-CSharp::MeatMeProfileData
+  username: Grim Lynn
+  photo: {fileID: 7230204804907872289, guid: 55c61d943ee6d484dafd9ad54031d324, type: 3}
+  description: It's grim lynn time
+  greetings:
+  - Hi! Nice meeting you. I really like that shiny watch in your picture.
+  positive:
+  - You really get me! I agree.
+  - I think that's worth my time. My money? Not sure yet.
+  negative:
+  - That was a really cheap line. Even cheaper than your outfit.
+  - You seriously thought that would work?
+  death:
+  - That was... really not worth it...
+  conversationSuccess:
+  - Money is the thing I love the most in the world, but you might be number two.
+    Or three, actually, after gold.
+  conversationFail:
+  - Ew! Don't waste my time. Or money.
+  apartmentDialogues:
+  - It's kinda small in here... I was expecting a nicer place.
+  - So, what do you do for a living? Something that earns a lot of money?
+  - For, uh... research purposes, if you had a ton of money, where would you hide
+    it?
+  conversationRules:
+  - {fileID: 11400000, guid: 7f5c8b9f77d6d1343946eb2e26c05fe9, type: 2}
+  - {fileID: 11400000, guid: e04d19f1afbc7d0438e9136f4802dc5f, type: 2}
