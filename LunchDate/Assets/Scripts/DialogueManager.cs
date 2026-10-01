@@ -51,6 +51,18 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public void VictimRespond(bool outcome)
+    {
+        if (outcome == true)
+        {
+            onVictimRespondPositive.Broadcast(new EventData(data: profileData.positive[UnityEngine.Random.Range(0,profileData.positive.Count - 1)]));
+        }
+        else 
+        {
+            onVictimRespondNegative.Broadcast(new EventData(data: profileData.negative[UnityEngine.Random.Range(0, profileData.positive.Count - 1)]));
+        }
+    }
+
     public void CheckRules()
     {
         onVictimRespondPositive.Broadcast(new EventData(data: ""));
@@ -75,12 +87,12 @@ public class DialogueManager : MonoBehaviour
             if (isPositiveOutcome)
             {
                 onDialogueSuccess.Broadcast(new EventData(recipient: suspictionMeter.transform, data: suspicionModifier));
-                onVictimRespondPositive.Broadcast(new EventData(data: profileData.positive[0]));
+                VictimRespond(true);
             }
             else
             {
                 onDialogueFail.Broadcast(new EventData(recipient: suspictionMeter.transform, data: suspicionModifier));
-                onVictimRespondNegative.Broadcast(new EventData(data: profileData.negative[0]));
+                VictimRespond(false);
             }
         }
     }
@@ -94,12 +106,13 @@ public class DialogueManager : MonoBehaviour
             if (isPositiveOutcome)
             {
                 onDialogueSuccess.Broadcast(new EventData(recipient:suspictionMeter.transform, data: suspicionModifier));
-                onVictimRespondPositive.Broadcast(new EventData(data: profileData.positive[0]));
+                VictimRespond(true);
             }
             else
             {
                 onDialogueFail.Broadcast(new EventData(recipient: suspictionMeter.transform, data: suspicionModifier));
-                onVictimRespondNegative.Broadcast(new EventData(data: profileData.negative[0]));
+                VictimRespond(false);
+
             }
         }
     }
@@ -114,12 +127,12 @@ public class DialogueManager : MonoBehaviour
             if (isPositiveOutcome)
             {
                 onDialogueSuccess.Broadcast(new EventData(recipient: suspictionMeter.transform, data: 1));
-                onVictimRespondPositive.Broadcast(new EventData(data: profileData.positive[0]));
+                VictimRespond(true);
             }
             else
             {
                 onDialogueFail.Broadcast(new EventData(recipient: suspictionMeter.transform, data: 1));
-                onVictimRespondNegative.Broadcast(new EventData(data: profileData.negative[0]));
+                VictimRespond(false);
             }
         }
     }

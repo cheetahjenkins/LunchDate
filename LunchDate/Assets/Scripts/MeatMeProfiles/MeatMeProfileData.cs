@@ -6,6 +6,8 @@ public class MeatMeProfileData : ScriptableObject
 {
     public string username;
     public Sprite photo;
+    public Sprite deadPhoto; 
+
     public string description;
 
     public List<string> greetings;
