@@ -31,7 +31,8 @@ public class DialogueManager : MonoBehaviour
     {
         if(currentDialogueIndex == maxConversationLength - 1)
         {
-            onMoveToKitchen.Broadcast(new EventData());
+            print("moving to kitchen");
+            onMoveToKitchen.Broadcast(new EventData(data: profileData.apartmentDialogues[0]));
             return;
         } 
         ConversationHistory.Add((DialogueAttribute)data.data);
@@ -65,7 +66,6 @@ public class DialogueManager : MonoBehaviour
 
     public void CheckRules()
     {
-        onVictimRespondPositive.Broadcast(new EventData(data: ""));
         foreach(ConversationRule rule in profileData.conversationRules)
         {
             if(rule.conversationRuleName == ConversationRuleName.First)
