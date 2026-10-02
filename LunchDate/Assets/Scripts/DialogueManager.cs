@@ -29,12 +29,7 @@ public class DialogueManager : MonoBehaviour
 
     public void AddToConversationHistory(EventData data)
     {
-        if(currentDialogueIndex == maxConversationLength - 1)
-        {
-            print("moving to kitchen");
-            onMoveToKitchen.Broadcast(new EventData(data: profileData.apartmentDialogues[0]));
-            return;
-        } 
+        
         ConversationHistory.Add((DialogueAttribute)data.data);
     }
 
@@ -60,81 +55,111 @@ public class DialogueManager : MonoBehaviour
         }
         else 
         {
-            onVictimRespondNegative.Broadcast(new EventData(data: profileData.negative[UnityEngine.Random.Range(0, profileData.positive.Count - 1)]));
+            onVictimRespondNegative.Broadcast(new EventData(data: profileData.negative[UnityEngine.Random.Range(0, profileData.negative.Count - 1)]));
         }
     }
 
     public void CheckRules()
     {
+        if (currentDialogueIndex == maxConversationLength - 1)
+        {
+            print("moving to kitchen");
+            onMoveToKitchen.Broadcast(new EventData(data: profileData.apartmentDialogues[0]));
+            ResetAll(new EventData());
+            return;
+        }
+
+        int fails = 0;
+
         foreach(ConversationRule rule in profileData.conversationRules)
         {
             if(rule.conversationRuleName == ConversationRuleName.First)
             {
-                First(rule.relevantAttributes[0],rule.isPositiveOutcome);
+                if(First(rule.relevantAttributes[0], rule.isPositiveOutcome) == false)
+                {
+                    fails++;
+                }
             }
             if (rule.conversationRuleName == ConversationRuleName.Double)
             {
-                Double(rule.relevantAttributes[0], rule.isPositiveOutcome);
+                if(Double(rule.relevantAttributes[0], rule.isPositiveOutcome) == false)
+                {
+                    fails++;
+                }
             }
+        }
+        if(fails == 0)
+        {
+            VictimRespond(true);
+            onDialogueSuccess.Broadcast(new EventData(recipient: suspictionMeter.transform, data: suspicionModifier));
         }
         currentDialogueIndex++;
     }
 
-    public void Last(DialogueAttribute attribute, bool isPositiveOutcome)
+    public bool Last(DialogueAttribute attribute, bool isPositiveOutcome)
     {
         if (ConversationHistory[maxConversationLength - 1] == attribute)
         {
             if (isPositiveOutcome)
             {
-                onDialogueSuccess.Broadcast(new EventData(recipient: suspictionMeter.transform, data: suspicionModifier));
-                VictimRespond(true);
+                //onDialogueSuccess.Broadcast(new EventData(recipient: suspictionMeter.transform, data: suspicionModifier));
+                //VictimRespond(true);
             }
             else
             {
                 onDialogueFail.Broadcast(new EventData(recipient: suspictionMeter.transform, data: suspicionModifier));
                 VictimRespond(false);
+                return false;
             }
         }
+        return true;
     }
 
-    public void First(DialogueAttribute attribute, bool isPositiveOutcome)
+    public bool First(DialogueAttribute attribute, bool isPositiveOutcome)
     {
-        if (currentDialogueIndex != 0) return;
-
-        if (ConversationHistory[0] == attribute)
+        if (currentDialogueIndex == 0)
         {
-            if (isPositiveOutcome)
+            if (ConversationHistory[0] == attribute)
             {
-                onDialogueSuccess.Broadcast(new EventData(recipient:suspictionMeter.transform, data: suspicionModifier));
-                VictimRespond(true);
-            }
-            else
-            {
-                onDialogueFail.Broadcast(new EventData(recipient: suspictionMeter.transform, data: suspicionModifier));
-                VictimRespond(false);
+                if (isPositiveOutcome)
+                {
+                    //onDialogueSuccess.Broadcast(new EventData(recipient: suspictionMeter.transform, data: suspicionModifier));
+                    //VictimRespond(true);
+                }
+                else
+                {
+                    onDialogueFail.Broadcast(new EventData(recipient: suspictionMeter.transform, data: suspicionModifier));
+                    VictimRespond(false);
+                    return false;
 
+                }
             }
         }
+        
+        return true;
     }
 
-    public void Double(DialogueAttribute attribute, bool isPositiveOutcome)
+    public bool Double(DialogueAttribute attribute, bool isPositiveOutcome)
     {
-        if (currentDialogueIndex == 0) return;
-
-        if (ConversationHistory[ConversationHistory.Count - 1] == attribute && ConversationHistory[ConversationHistory.Count - 2] == attribute)
+        if (currentDialogueIndex != 0)
         {
+            if (ConversationHistory[ConversationHistory.Count - 1] == attribute && ConversationHistory[ConversationHistory.Count - 2] == attribute)
+            {
 
-            if (isPositiveOutcome)
-            {
-                onDialogueSuccess.Broadcast(new EventData(recipient: suspictionMeter.transform, data: 1));
-                VictimRespond(true);
-            }
-            else
-            {
-                onDialogueFail.Broadcast(new EventData(recipient: suspictionMeter.transform, data: 1));
-                VictimRespond(false);
+                if (isPositiveOutcome)
+                {
+                    //onDialogueSuccess.Broadcast(new EventData(recipient: suspictionMeter.transform, data: 1));
+                    //VictimRespond(true);
+                }
+                else
+                {
+                    onDialogueFail.Broadcast(new EventData(recipient: suspictionMeter.transform, data: 1));
+                    VictimRespond(false);
+                    return false;
+                }
             }
         }
+        return true;
     }
 
     //public void Combination(DialogueAttribute attributeOne, DialogueAttribute attributeTwo)

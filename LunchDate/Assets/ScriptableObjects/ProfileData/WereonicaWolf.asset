@@ -14,15 +14,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MeatMeProfileData
   username: Grim Lynn
   photo: {fileID: 467365005948393569, guid: f687fa5ba3efee343b7f25e0c70cda4e, type: 3}
+  deadPhoto: {fileID: 0}
   description: AWOOOOO
   greetings:
   - Hey, stranger! Up for a fun adventure?
   positive:
   - Hell yeah! That rocks!
   - Count me in, I really like that!
+  - Hey, that one wasn't that bad!
+  - Aye, you really have a fun vibe!
+  - You're really not too shabby!
   negative:
   - Dude, do you really think that's a good idea?
   - Man... I don't know about that.
+  - Eh, that's... interesting, I guess.
+  - Could we switch to another topic...?
+  - Not cool, dude. Not cool.
   death:
   - What the- huh...? I thought you were... a pal...?
   conversationSuccess:

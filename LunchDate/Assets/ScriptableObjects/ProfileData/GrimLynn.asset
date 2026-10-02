@@ -13,16 +13,23 @@ MonoBehaviour:
   m_Name: GrimLynn
   m_EditorClassIdentifier: Assembly-CSharp::MeatMeProfileData
   username: Grim Lynn
-  photo: {fileID: 7230204804907872289, guid: 55c61d943ee6d484dafd9ad54031d324, type: 3}
+  photo: {fileID: 5838281212545866351, guid: 8a4496cf0089a39478705db3ecaa50fe, type: 3}
+  deadPhoto: {fileID: 0}
   description: It's grim lynn time
   greetings:
   - Hi! Nice meeting you. I really like that shiny watch in your picture.
   positive:
   - You really get me! I agree.
   - I think that's worth my time. My money? Not sure yet.
+  - Your mind really can be as bright as a diamond!
+  - (snorting laugh)
+  - I think I'll invest in you.
   negative:
   - That was a really cheap line. Even cheaper than your outfit.
   - You seriously thought that would work?
+  - Tick-tock. Your time is running out!
+  - I don't have all day for your nonsense!
+  - (cringes) Cheesy. I don't like cheese.
   death:
   - That was... really not worth it...
   conversationSuccess:
